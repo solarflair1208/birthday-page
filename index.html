@@ -1,10 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Birthday Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Quest</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Courier New", monospace;
+      background: linear-gradient(#bfe6ff, #eaf7ff);
+      color: #1d3f8f;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      gap: 30px;
+    }
+
+    .game {
+      background: #dff3ff;
+      border: 5px solid #3b6dcc;
+      box-shadow: 8px 8px #1d3f8f;
+      border-radius: 20px;
+      width: 700px;
+      max-width: 90vw;
+      text-align: center;
+      padding: 30px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #2459c7;
+      text-shadow: 3px 3px white;
+    }
+
+    .instructions {
+      background: white;
+      border: 3px solid #6ca4e8;
+      border-radius: 16px;
+      padding: 15px;
+      margin: 20px auto;
+      width: 80%;
+      font-weight: bold;
+    }
+
+    .cake-area {
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .candles {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: -10px;
+    }
+
+    .candle {
+      width: 28px;
+      height: 95px;
+      background: repeating-linear-gradient(
+        45deg,
+        #2d70d6,
+        #2d70d6 8px,
+        #9fd4ff 8px,
+        #9fd4ff 16px
+      );
+      border: 3px solid #164aa8;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .flame {
+      width: 24px;
+      height: 34px;
+      background: radial-gradient(circle, #fff7a8 20%, #ffb32c 55%, #ff6b2c 80%);
+      border-radius: 50% 50% 50% 50%;
+      position: absolute;
+      top: -38px;
+      left: 2px;
+      animation: flicker 0.4s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(1.15); opacity: 0.85; }
+    }
+
+    .cake {
+      width: 380px;
+      height: 180px;
+      background: #fff0d8;
+      border: 5px solid #2459c7;
+      border-radius: 30px 30px 20px 20px;
+      margin: auto;
+      position: relative;
+      box-shadow: inset 0 -25px #a8d9ff;
+    }
+
+    .cake::before {
+      content: "";
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 100%;
+      height: 45px;
+      background: #8ccfff;
+      border-radius: 20px;
+    }
+
+    .plate {
+      width: 440px;
+      height: 35px;
+      background: white;
+      border: 4px solid #2459c7;
+      border-radius: 50%;
+      margin: -15px auto 0;
+    }
+
+    .message {
+      display: none;
+      font-size: 36px;
+      color: #ff6fae;
+      margin-top: 20px;
+      font-weight: bold;
+      text-shadow: 2px 2px white;
+    }
+
+    .sidebar {
+      background: #eaf7ff;
+      border: 5px solid #3b6dcc;
+      box-shadow: 8px 8px #1d3f8f;
+      border-radius: 20px;
+      width: 280px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .button {
+      background: white;
+      border: 3px solid #6ca4e8;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 15px 0;
+      cursor: pointer;
+      font-weight: bold;
+      color: #2459c7;
+    }
+
+    .button:hover {
+      background: #cfefff;
+    }
+
+    .letter {
+      display: none;
+      background: #fffdf7;
+      border: 4px solid #6ca4e8;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 20px;
+      color: #24437c;
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .pixel {
+      font-size: 28px;
+    }
+
+    .cloud {
+      position: fixed;
+      color: white;
+      font-size: 45px;
+      opacity: 0.8;
+      animation: float 8s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(20px); }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background: #ff6fae;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .cake {
+        width: 300px;
+      }
+
+      .plate {
+        width: 340px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>🎂 Happy Birthday!</h1>
-  <p>If you can see this page, GitHub Pages is working!</p>
+  <div class="cloud" style="top: 50px; left: 40px;">☁️</div>
+  <div class="cloud" style="top: 120px; right: 80px;">☁️</div>
+
+  <div class="page">
+    <div class="game">
+      <div class="pixel">💙 ⭐ 💙</div>
+      <h1>HAPPY BIRTHDAY!</h1>
+
+      <div class="instructions">
+        Click the cake to blow out all 4 candles!
+      </div>
+
+      <div class="cake-area" onclick="blowCandles()">
+        <div class="candles">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+
+        <div class="cake"></div>
+        <div class="plate"></div>
+      </div>
+
+      <div class="message" id="birthdayMessage">
+        🎉 HAPPY BIRTHDAY! 🎉
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>♡ MENU ♡</h2>
+
+      <div class="button" onclick="openLetter()">
+        💌 Open Letter
+      </div>
+
+      <div class="button" onclick="showSurprise()">
+        🎁 Surprise
+      </div>
+
+      <div class="letter" id="letter">
+        <h3>Dear You,</h3>
+        <p>
+          Happy birthday! I hope your day is filled with joy, love, and all the little things that make you smile.
+        </p>
+        <p>
+          I’m really grateful for you, and I hope this tiny birthday quest makes your day a little sweeter.
+        </p>
+        <p>
+          You deserve the happiest birthday ever. 💙
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let candlesBlown = false;
+
+    function blowCandles() {
+      if (candlesBlown) return;
+
+      candlesBlown = true;
+
+      const flames = document.querySelectorAll(".flame");
+      flames.forEach(flame => {
+        flame.style.display = "none";
+      });
+
+      document.getElementById("birthdayMessage").style.display = "block";
+      createConfetti();
+    }
+
+    function openLetter() {
+      const letter = document.getElementById("letter");
+      letter.style.display = letter.style.display === "block" ? "none" : "block";
+    }
+
+    function showSurprise() {
+      alert("You unlocked a birthday surprise! 💙 You are so special today!");
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = randomColor();
+        confetti.style.animationDelay = Math.random() * 1.5 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 4000);
+      }
+    }
+
+    function randomColor() {
+      const colors = ["#6ca4e8", "#ff9acb", "#ffffff", "#ffd86b", "#8ee6ff"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
 </body>
 </html>
