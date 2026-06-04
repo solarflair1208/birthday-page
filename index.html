@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Quest</title>
+  <title>birthday gift</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Courier New", monospace;
@@ -28,15 +32,14 @@
       border: 5px solid #3b6dcc;
       box-shadow: 8px 8px #1d3f8f;
       border-radius: 20px;
-      width: 700px;
-      max-width: 90vw;
+      width: 680px;
+      max-width: 100%;
       text-align: center;
       padding: 30px;
-      position: relative;
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 46px;
       color: #2459c7;
       text-shadow: 3px 3px white;
     }
@@ -47,7 +50,7 @@
       border-radius: 16px;
       padding: 15px;
       margin: 20px auto;
-      width: 80%;
+      width: 85%;
       font-weight: bold;
     }
 
@@ -65,7 +68,7 @@
 
     .candle {
       width: 28px;
-      height: 95px;
+      height: 90px;
       background: repeating-linear-gradient(
         45deg,
         #2d70d6,
@@ -82,20 +85,22 @@
       width: 24px;
       height: 34px;
       background: radial-gradient(circle, #fff7a8 20%, #ffb32c 55%, #ff6b2c 80%);
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50%;
       position: absolute;
       top: -38px;
       left: 2px;
-      animation: flicker 0.4s infinite alternate;
+      animation: flicker 0.35s infinite alternate;
+      filter: drop-shadow(0 0 10px #ffb32c);
     }
 
     @keyframes flicker {
-      from { transform: scale(1); opacity: 1; }
-      to { transform: scale(1.15); opacity: 0.85; }
+      from { transform: scale(1) rotate(-2deg); }
+      to { transform: scale(1.15) rotate(2deg); }
     }
 
     .cake {
       width: 380px;
+      max-width: 82vw;
       height: 180px;
       background: #fff0d8;
       border: 5px solid #2459c7;
@@ -118,6 +123,7 @@
 
     .plate {
       width: 440px;
+      max-width: 88vw;
       height: 35px;
       background: white;
       border: 4px solid #2459c7;
@@ -127,7 +133,7 @@
 
     .message {
       display: none;
-      font-size: 36px;
+      font-size: 34px;
       color: #ff6fae;
       margin-top: 20px;
       font-weight: bold;
@@ -139,7 +145,8 @@
       border: 5px solid #3b6dcc;
       box-shadow: 8px 8px #1d3f8f;
       border-radius: 20px;
-      width: 280px;
+      width: 360px;
+      max-width: 100%;
       padding: 25px;
       text-align: center;
     }
@@ -168,27 +175,24 @@
       margin-top: 20px;
       color: #24437c;
       text-align: left;
-      max-height: 300px;
+      height: 430px;
       overflow-y: auto;
       line-height: 1.6;
-    }
-
-    .pixel {
-      font-size: 28px;
+      font-size: 15px;
     }
 
     .cloud {
       position: fixed;
       color: white;
-      font-size: 45px;
       opacity: 0.8;
-      animation: float 8s infinite ease-in-out;
+      animation: moveClouds linear infinite;
       z-index: -1;
+      filter: drop-shadow(2px 3px 0 #8bbef0);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(20px); }
+    @keyframes moveClouds {
+      from { transform: translateX(-25vw); }
+      to { transform: translateX(125vw); }
     }
 
     .confetti {
@@ -196,8 +200,8 @@
       top: -10px;
       width: 10px;
       height: 10px;
-      background: #ff6fae;
       animation: fall 3s linear forwards;
+      z-index: 999;
     }
 
     @keyframes fall {
@@ -210,30 +214,68 @@
     @media (max-width: 900px) {
       .page {
         flex-direction: column;
+        padding: 18px;
+        gap: 22px;
+      }
+
+      .game,
+      .sidebar {
+        width: 100%;
+        box-shadow: 5px 5px #1d3f8f;
+      }
+
+      .game {
+        padding: 22px;
       }
 
       h1 {
-        font-size: 36px;
+        font-size: 34px;
+      }
+
+      .instructions {
+        width: 100%;
+        font-size: 14px;
+      }
+
+      .candles {
+        gap: 18px;
+      }
+
+      .candle {
+        width: 24px;
+        height: 78px;
+      }
+
+      .flame {
+        width: 20px;
+        height: 30px;
+        top: -34px;
       }
 
       .cake {
-        width: 300px;
+        height: 155px;
       }
 
-      .plate {
-        width: 340px;
+      .message {
+        font-size: 26px;
+      }
+
+      .letter {
+        height: 360px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="cloud" style="top: 50px; left: 40px;">☁️</div>
-  <div class="cloud" style="top: 120px; right: 80px;">☁️</div>
+  <div class="cloud" style="top: 40px; left: 0; font-size: 65px; animation-duration: 40s;">☁</div>
+  <div class="cloud" style="top: 130px; left: -20vw; font-size: 42px; animation-duration: 32s; animation-delay: -10s;">☁</div>
+  <div class="cloud" style="top: 260px; left: -30vw; font-size: 55px; animation-duration: 48s; animation-delay: -18s;">☁</div>
+  <div class="cloud" style="top: 500px; left: -40vw; font-size: 46px; animation-duration: 36s; animation-delay: -6s;">☁</div>
 
   <div class="page">
     <div class="game">
-      <div class="pixel">💙 ⭐ 💙</div>
+      <div>💙 ⭐ 💙</div>
       <h1>HAPPY BIRTHDAY!</h1>
 
       <div class="instructions">
@@ -261,7 +303,11 @@
       <h2>♡ MENU ♡</h2>
 
       <div class="button" onclick="openLetter()">
-        💌 Open Letter
+        💌 Open / Close Letter
+      </div>
+
+      <div class="button" onclick="downloadLetter()">
+        ⬇ Download Letter
       </div>
 
       <div class="button" onclick="showSurprise()">
@@ -270,14 +316,35 @@
 
       <div class="letter" id="letter">
         <h3>Dear You,</h3>
+
         <p>
-          Happy birthday! I hope your day is filled with joy, love, and all the little things that make you smile.
+          Happy birthday! I hope your day is filled with joy, love, laughter,
+          and every little thing that makes you smile.
         </p>
+
         <p>
-          I’m really grateful for you, and I hope this tiny birthday quest makes your day a little sweeter.
+          I am so grateful for you and for all the memories, conversations,
+          and moments that make you such a special person in my life.
         </p>
+
         <p>
-          You deserve the happiest birthday ever. 💙
+          You deserve to feel celebrated today, not just because it is your
+          birthday, but because you truly bring so much light to the people
+          around you.
+        </p>
+
+        <p>
+          I hope this little birthday page makes you smile. I wanted to make
+          something cute, fun, and special just for you.
+        </p>
+
+        <p>
+          Have the happiest birthday ever. 💙
+        </p>
+
+        <p>
+          With love,<br />
+          Your Name
         </p>
       </div>
     </div>
@@ -288,11 +355,9 @@
 
     function blowCandles() {
       if (candlesBlown) return;
-
       candlesBlown = true;
 
-      const flames = document.querySelectorAll(".flame");
-      flames.forEach(flame => {
+      document.querySelectorAll(".flame").forEach(flame => {
         flame.style.display = "none";
       });
 
@@ -306,18 +371,28 @@
     }
 
     function showSurprise() {
-      alert("You unlocked a birthday surprise! 💙 You are so special today!");
+      alert("You unlocked a birthday surprise! 💙 You are so loved today!");
+    }
+
+    function downloadLetter() {
+      const letterText = document.getElementById("letter").innerText;
+      const blob = new Blob([letterText], { type: "text/plain" });
+      const link = document.createElement("a");
+
+      link.href = URL.createObjectURL(blob);
+      link.download = "birthday-letter.txt";
+      link.click();
+
+      URL.revokeObjectURL(link.href);
     }
 
     function createConfetti() {
       for (let i = 0; i < 120; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
-
         confetti.style.left = Math.random() * 100 + "vw";
         confetti.style.backgroundColor = randomColor();
         confetti.style.animationDelay = Math.random() * 1.5 + "s";
-
         document.body.appendChild(confetti);
 
         setTimeout(() => {
