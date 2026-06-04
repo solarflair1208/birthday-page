@@ -9,48 +9,26 @@
     body {
       margin: 0;
       font-family: "Courier New", monospace;
-      background: linear-gradient(#9fd3ff, #dff4ff);
-      color: #173f91;
+      background: linear-gradient(#bfe6ff, #eaf7ff);
+      color: #1d3f8f;
       overflow-x: hidden;
-    }
-
-    .cloud {
-      position: fixed;
-      color: white;
-      font-size: 60px;
-      opacity: 0.9;
-      z-index: -1;
-      animation: drift linear infinite;
-      filter: drop-shadow(2px 4px 0 #8bbef0);
-    }
-
-    .cloud.small { font-size: 38px; opacity: 0.75; }
-    .cloud.medium { font-size: 52px; opacity: 0.85; }
-    .cloud.large { font-size: 76px; opacity: 0.95; }
-
-    @keyframes drift {
-      from { transform: translateX(-20vw); }
-      to { transform: translateX(120vw); }
     }
 
     .page {
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: stretch;
-      padding: 35px;
+      align-items: center;
+      padding: 30px;
       gap: 30px;
     }
 
-    .game, .sidebar {
-      background: rgba(225, 245, 255, 0.95);
-      border: 5px solid #3468c9;
-      box-shadow: 8px 8px #173f91;
-      border-radius: 20px;
-    }
-
     .game {
-      width: 680px;
+      background: #dff3ff;
+      border: 5px solid #3b6dcc;
+      box-shadow: 8px 8px #1d3f8f;
+      border-radius: 20px;
+      width: 700px;
       max-width: 90vw;
       text-align: center;
       padding: 30px;
@@ -58,10 +36,9 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 48px;
       color: #2459c7;
-      text-shadow: 4px 4px white, 6px 6px #6ca4e8;
-      margin-bottom: 10px;
+      text-shadow: 3px 3px white;
     }
 
     .instructions {
@@ -70,111 +47,77 @@
       border-radius: 16px;
       padding: 15px;
       margin: 20px auto;
-      width: 82%;
+      width: 80%;
       font-weight: bold;
-      box-shadow: 4px 4px #b8dcff;
     }
 
     .cake-area {
       cursor: pointer;
-      margin-top: 35px;
-      user-select: none;
+      margin-top: 30px;
     }
 
     .candles {
       display: flex;
       justify-content: center;
-      gap: 36px;
-      margin-bottom: -8px;
+      gap: 25px;
+      margin-bottom: -10px;
     }
 
     .candle {
-      width: 30px;
-      height: 98px;
+      width: 28px;
+      height: 95px;
       background: repeating-linear-gradient(
         45deg,
-        #1f68d8,
-        #1f68d8 8px,
-        #b9e4ff 8px,
-        #b9e4ff 16px
+        #2d70d6,
+        #2d70d6 8px,
+        #9fd4ff 8px,
+        #9fd4ff 16px
       );
-      border: 3px solid #143d91;
+      border: 3px solid #164aa8;
       border-radius: 8px;
       position: relative;
-      box-shadow: inset -5px 0 rgba(255,255,255,0.35);
     }
 
     .flame {
-      width: 28px;
-      height: 42px;
+      width: 24px;
+      height: 34px;
+      background: radial-gradient(circle, #fff7a8 20%, #ffb32c 55%, #ff6b2c 80%);
+      border-radius: 50% 50% 50% 50%;
       position: absolute;
-      top: -46px;
-      left: 1px;
-      background:
-        radial-gradient(circle at 50% 68%, #fff9c8 0 18%, transparent 19%),
-        radial-gradient(circle at 50% 45%, #ffd65a 0 34%, transparent 35%),
-        radial-gradient(circle at 50% 55%, #ff8a2a 0 58%, transparent 59%);
-      border-radius: 60% 60% 50% 50%;
-      transform-origin: bottom center;
-      animation: flameFlicker 0.18s infinite alternate;
-      filter: drop-shadow(0 0 10px #ffd65a) drop-shadow(0 0 18px #ff8a2a);
+      top: -38px;
+      left: 2px;
+      animation: flicker 0.4s infinite alternate;
     }
 
-    .flame::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 22px;
-      left: 8px;
-      top: 10px;
-      background: #fff8b8;
-      border-radius: 50%;
-      opacity: 0.9;
-    }
-
-    @keyframes flameFlicker {
-      from { transform: scaleY(1) rotate(-3deg); }
-      to { transform: scaleY(1.15) rotate(3deg); }
+    @keyframes flicker {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(1.15); opacity: 0.85; }
     }
 
     .cake {
-      width: 400px;
-      height: 190px;
+      width: 380px;
+      height: 180px;
       background: #fff0d8;
       border: 5px solid #2459c7;
       border-radius: 30px 30px 20px 20px;
       margin: auto;
       position: relative;
-      box-shadow: inset 0 -28px #a8d9ff;
+      box-shadow: inset 0 -25px #a8d9ff;
     }
 
     .cake::before {
       content: "";
       position: absolute;
-      top: 22px;
+      top: 25px;
       left: 0;
       width: 100%;
-      height: 48px;
+      height: 45px;
       background: #8ccfff;
       border-radius: 20px;
-      box-shadow:
-        20px 25px #8ccfff,
-        80px 30px #8ccfff,
-        155px 20px #8ccfff,
-        245px 32px #8ccfff,
-        320px 24px #8ccfff;
-    }
-
-    .sprinkle {
-      position: absolute;
-      width: 8px;
-      height: 4px;
-      background: #ff8ac6;
-      border-radius: 4px;
     }
 
     .plate {
-      width: 455px;
+      width: 440px;
       height: 35px;
       background: white;
       border: 4px solid #2459c7;
@@ -184,16 +127,19 @@
 
     .message {
       display: none;
-      font-size: 38px;
+      font-size: 36px;
       color: #ff6fae;
-      margin-top: 22px;
+      margin-top: 20px;
       font-weight: bold;
-      text-shadow: 3px 3px white;
+      text-shadow: 2px 2px white;
     }
 
     .sidebar {
-      width: 410px;
-      max-width: 90vw;
+      background: #eaf7ff;
+      border: 5px solid #3b6dcc;
+      box-shadow: 8px 8px #1d3f8f;
+      border-radius: 20px;
+      width: 280px;
       padding: 25px;
       text-align: center;
     }
@@ -202,17 +148,15 @@
       background: white;
       border: 3px solid #6ca4e8;
       border-radius: 14px;
-      padding: 15px;
-      margin: 14px 0;
+      padding: 16px;
+      margin: 15px 0;
       cursor: pointer;
       font-weight: bold;
       color: #2459c7;
-      box-shadow: 4px 4px #b8dcff;
     }
 
     .button:hover {
       background: #cfefff;
-      transform: translateY(-2px);
     }
 
     .letter {
@@ -220,19 +164,31 @@
       background: #fffdf7;
       border: 4px solid #6ca4e8;
       border-radius: 18px;
-      padding: 22px;
-      margin-top: 18px;
+      padding: 20px;
+      margin-top: 20px;
       color: #24437c;
       text-align: left;
-      height: 520px;
+      max-height: 300px;
       overflow-y: auto;
-      line-height: 1.7;
-      font-size: 15px;
-      box-shadow: inset 0 0 0 3px #d7efff;
+      line-height: 1.6;
     }
 
     .pixel {
       font-size: 28px;
+    }
+
+    .cloud {
+      position: fixed;
+      color: white;
+      font-size: 45px;
+      opacity: 0.8;
+      animation: float 8s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(20px); }
     }
 
     .confetti {
@@ -240,8 +196,8 @@
       top: -10px;
       width: 10px;
       height: 10px;
+      background: #ff6fae;
       animation: fall 3s linear forwards;
-      z-index: 999;
     }
 
     @keyframes fall {
@@ -251,38 +207,29 @@
       }
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 900px) {
       .page {
         flex-direction: column;
-        align-items: center;
       }
 
       h1 {
-        font-size: 38px;
+        font-size: 36px;
       }
 
       .cake {
-        width: 310px;
+        width: 300px;
       }
 
       .plate {
-        width: 360px;
-      }
-
-      .sidebar {
-        width: 85vw;
+        width: 340px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="cloud large" style="top: 40px; left: 0; animation-duration: 36s;">☁</div>
-  <div class="cloud medium" style="top: 120px; left: -20vw; animation-duration: 48s; animation-delay: -10s;">☁</div>
-  <div class="cloud small" style="top: 210px; left: -30vw; animation-duration: 32s; animation-delay: -20s;">☁</div>
-  <div class="cloud large" style="top: 330px; left: -50vw; animation-duration: 55s; animation-delay: -25s;">☁</div>
-  <div class="cloud medium" style="top: 470px; left: -10vw; animation-duration: 42s; animation-delay: -5s;">☁</div>
-  <div class="cloud small" style="top: 610px; left: -40vw; animation-duration: 38s; animation-delay: -15s;">☁</div>
+  <div class="cloud" style="top: 50px; left: 40px;">☁️</div>
+  <div class="cloud" style="top: 120px; right: 80px;">☁️</div>
 
   <div class="page">
     <div class="game">
@@ -301,15 +248,7 @@
           <div class="candle"><div class="flame"></div></div>
         </div>
 
-        <div class="cake">
-          <div class="sprinkle" style="top: 90px; left: 40px;"></div>
-          <div class="sprinkle" style="top: 120px; left: 85px; background:#6ca4e8;"></div>
-          <div class="sprinkle" style="top: 85px; left: 150px; background:#ffd86b;"></div>
-          <div class="sprinkle" style="top: 130px; left: 220px;"></div>
-          <div class="sprinkle" style="top: 100px; left: 300px; background:#6ca4e8;"></div>
-          <div class="sprinkle" style="top: 145px; left: 340px; background:#ffd86b;"></div>
-        </div>
-
+        <div class="cake"></div>
         <div class="plate"></div>
       </div>
 
@@ -319,14 +258,10 @@
     </div>
 
     <div class="sidebar">
-      <h2>♡ YOUR LETTER ♡</h2>
+      <h2>♡ MENU ♡</h2>
 
       <div class="button" onclick="openLetter()">
-        💌 Open / Close Letter
-      </div>
-
-      <div class="button" onclick="downloadLetter()">
-        ⬇ Download Letter
+        💌 Open Letter
       </div>
 
       <div class="button" onclick="showSurprise()">
@@ -335,35 +270,14 @@
 
       <div class="letter" id="letter">
         <h3>Dear You,</h3>
-
         <p>
-          Happy birthday! I hope your day is filled with joy, love, laughter,
-          and every little thing that makes you smile.
+          Happy birthday! I hope your day is filled with joy, love, and all the little things that make you smile.
         </p>
-
         <p>
-          I am so grateful for you and for all the memories, conversations,
-          and moments that make you such a special person in my life.
+          I’m really grateful for you, and I hope this tiny birthday quest makes your day a little sweeter.
         </p>
-
         <p>
-          You deserve to feel celebrated today, not just because it is your
-          birthday, but because you truly bring so much light to the people
-          around you.
-        </p>
-
-        <p>
-          I hope this little birthday page makes you smile. I wanted to make
-          something cute, fun, and special just for you.
-        </p>
-
-        <p>
-          Have the happiest birthday ever. 💙
-        </p>
-
-        <p>
-          With love,<br />
-          Your Name
+          You deserve the happiest birthday ever. 💙
         </p>
       </div>
     </div>
@@ -374,19 +288,16 @@
 
     function blowCandles() {
       if (candlesBlown) return;
+
       candlesBlown = true;
 
-      document.querySelectorAll(".flame").forEach(flame => {
-        flame.style.transition = "0.5s";
-        flame.style.opacity = "0";
-        flame.style.transform = "scale(0.2) translateY(20px)";
-        setTimeout(() => flame.style.display = "none", 500);
+      const flames = document.querySelectorAll(".flame");
+      flames.forEach(flame => {
+        flame.style.display = "none";
       });
 
-      setTimeout(() => {
-        document.getElementById("birthdayMessage").style.display = "block";
-        createConfetti();
-      }, 500);
+      document.getElementById("birthdayMessage").style.display = "block";
+      createConfetti();
     }
 
     function openLetter() {
@@ -395,40 +306,28 @@
     }
 
     function showSurprise() {
-      alert("You unlocked a birthday surprise! 💙 You are so loved and celebrated today!");
-    }
-
-    function downloadLetter() {
-      const letterText = document.getElementById("letter").innerText;
-      const blob = new Blob([letterText], { type: "text/plain" });
-      const link = document.createElement("a");
-
-      link.href = URL.createObjectURL(blob);
-      link.download = "birthday-letter.txt";
-      link.click();
-
-      URL.revokeObjectURL(link.href);
+      alert("You unlocked a birthday surprise! 💙 You are so special today!");
     }
 
     function createConfetti() {
-      for (let i = 0; i < 140; i++) {
+      for (let i = 0; i < 120; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
+
         confetti.style.left = Math.random() * 100 + "vw";
         confetti.style.backgroundColor = randomColor();
         confetti.style.animationDelay = Math.random() * 1.5 + "s";
-        confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
 
         document.body.appendChild(confetti);
 
         setTimeout(() => {
           confetti.remove();
-        }, 4500);
+        }, 4000);
       }
     }
 
     function randomColor() {
-      const colors = ["#6ca4e8", "#ff9acb", "#ffffff", "#ffd86b", "#8ee6ff", "#2459c7"];
+      const colors = ["#6ca4e8", "#ff9acb", "#ffffff", "#ffd86b", "#8ee6ff"];
       return colors[Math.floor(Math.random() * colors.length)];
     }
   </script>
